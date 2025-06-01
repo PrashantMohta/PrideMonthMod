@@ -17,6 +17,8 @@ namespace PrideMonthMod
             new ObjectNamedEnemy("Tiktik","Climber"), //tiktik
             new ObjectNamedEnemy("ShadowCreepers","Abyss Crawler"), //shadow creepers
             new FsmNamedEnemy("Crawlid","Crawler"), //Crawlid
+            new FsmNamedEnemy("MageBalloon","Mage Balloon"), //MageBlob
+            new FsmNamedEnemy("MageBlob","Mage Blob"), //MageBlob
         };
         public PrideMonthMod() : base("PrideMonthMod")
         {
