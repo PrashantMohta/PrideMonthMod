@@ -2,22 +2,22 @@
 
 namespace PrideMonthMod
 {
-    internal class FsmNamedEnemy(string resourceName, string objectName) : BaseMultiSkin
+    internal class NamedEnemy(string resourceName) : BaseMultiSkin
     {
         public override string GetResourceFilter() => resourceName;
 
-        public override bool Matcher(string fsmName, GameObject go)
+        private Material originalMaterial;
+        public BaseMultiSkin ShouldMatch(GameObject go)
         {
-            return fsmName == objectName;
+            originalMaterial = go.GetComponent<tk2dSprite>()?.CurrentSprite?.material;
+            return this;
         }
-    }
-    internal class ObjectNamedEnemy(string resourceName, string objectName) : BaseMultiSkin
-    {
-        public override string GetResourceFilter() => resourceName;
 
-        public override bool Matcher(string fsmName, GameObject go)
+        public override bool Matcher(GameObject go)
         {
-            return go.name.StartsWith(objectName);
+            if (originalMaterial == null) return false;
+            return go.GetComponent<tk2dSprite>()?.CurrentSprite?.material == originalMaterial;
         }
+
     }
 }

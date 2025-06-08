@@ -10,17 +10,18 @@ namespace PrideMonthMod
     abstract class BaseMultiSkin {
 
         public abstract string GetResourceFilter();
-        public abstract bool Matcher(string fsmName,GameObject go);
 
-        public bool CheckAndApply(string fsmName,GameObject go)
+        public abstract bool Matcher(GameObject go);
+
+        public bool CheckAndApply(GameObject go)
         {
-            if (Matcher(fsmName,go))
+            if (Matcher(go))
             {
-                var uniqueTk2d = go.GetAddComponent<UniqueTk2d>();
-                if (!uniqueTk2d.IsUnique)
-                {
-                    uniqueTk2d.MakeUnique().SetTexture(NextTexture());
-                }
+            var uniqueTk2d = go.GetAddComponent<UniqueTk2d>();
+            if (!uniqueTk2d.IsUnique)
+            {
+                uniqueTk2d.MakeUnique().SetTexture(NextTexture());
+            }
                 return true;
             }
             return false;

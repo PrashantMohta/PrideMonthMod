@@ -1,4 +1,5 @@
 ﻿using Modding;
+using Satchel.BetterPreloads;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,40 +9,43 @@ using UObject = UnityEngine.Object;
 
 namespace PrideMonthMod
 {
-    public class PrideMonthMod : Mod
+    public class PrideMonthMod : BetterPreloadsMod<PreloadsHolder>
     {
         internal static PrideMonthMod Instance;
         internal static System.Random RNG = new System.Random();
-        internal static List<BaseMultiSkin> items = new List<BaseMultiSkin> { 
-            new FsmNamedEnemy("Fungling","Fungoon Baby"), //fungling
-            new ObjectNamedEnemy("Tiktik","Climber"), //tiktik
-            new ObjectNamedEnemy("ShadowCreepers","Abyss Crawler"), //shadow creepers
-            new FsmNamedEnemy("Crawlid","Crawler"), //Crawlid
-            new FsmNamedEnemy("MageBalloon","Mage Balloon"), //MageBlob
-            new FsmNamedEnemy("MageBlob","Mage Blob"), //MageBlob
-        };
-        public PrideMonthMod() : base("PrideMonthMod")
+        internal static List<BaseMultiSkin> items;
+
+
+        public PrideMonthMod() 
         {
             Instance = this;
+            
         }
 
-        public override void Initialize(Dictionary<string, Dictionary<string, GameObject>> preloadedObjects)
+        public override void Initialize()
         {
             Instance = this;
-            On.HealthManager.Start += HealthManager_Start;
-            On.PlayMakerFSM.Awake += PlayMakerFSM_Awake;
+            items = new List<BaseMultiSkin> {
+                new NamedEnemy("Fungling").ShouldMatch(Preloads.Fungling),
+                new NamedEnemy("Tiktik").ShouldMatch(Preloads.Tiktik),
+                new NamedEnemy("ShadowCreepers").ShouldMatch(Preloads.ShadowCreepers), 
+                new NamedEnemy("Crawlid").ShouldMatch(Preloads.Crawlid),
+                new NamedEnemy("MageBalloon").ShouldMatch(Preloads.Folly),
+                new NamedEnemy("MageBlob").ShouldMatch(Preloads.Mistake)
+            };
+            On.tk2dSprite.Awake += Tk2dSprite_Awake;
         }
 
-        private void PlayMakerFSM_Awake(On.PlayMakerFSM.orig_Awake orig, PlayMakerFSM self)
+        private void Tk2dSprite_Awake(On.tk2dSprite.orig_Awake orig, tk2dSprite self)
         {
-            items.Find(item => item.CheckAndApply(self.FsmName,self.gameObject));
+            CheckAndApply(self.gameObject);
             orig(self);
         }
 
-        private void HealthManager_Start(On.HealthManager.orig_Start orig, HealthManager self)
+        private void CheckAndApply(GameObject gameObject)
         {
-            items.Find(item => item.CheckAndApply("HealthManager", self.gameObject));
-            orig(self);
+            items.Find(item => item.CheckAndApply(gameObject));
         }
+
     }
 }
