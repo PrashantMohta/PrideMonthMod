@@ -44,9 +44,6 @@ namespace PrideMonthMod
         }
         public void LoadTextures() {
             var resources = GetResourceNames();
-            foreach (var resource in resources) { 
-                Modding.Logger.Log(resource);
-            }
             textures = [.. resources.Select(path => AssemblyUtils.GetTextureFromResources(path))];
         }
     }
