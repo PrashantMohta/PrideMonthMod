@@ -7,5 +7,5 @@ A mod for the game Hollow Knight that applies a bunch of pride skins.
 - Transling by Hotspring
 - Pride Enemies by Artzfreak
 - PiKPiK by HBKit
-- NB Crawlid & Tiktik by Dragxon
+- NB Crawlid & Tiktik by Raxior Kohvalii Dragxon
 - Gender Fluids by Flame-Shadow
