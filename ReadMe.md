@@ -1,4 +1,4 @@
-# PrideMonthMod
+# All4Love
 
 A mod for the game Hollow Knight that applies a bunch of pride skins.
 
