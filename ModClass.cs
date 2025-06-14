@@ -9,14 +9,14 @@ using UObject = UnityEngine.Object;
 
 namespace PrideMonthMod
 {
-    public class PrideMonthMod : BetterPreloadsMod<PreloadsHolder>
+    public class All4Love : BetterPreloadsMod<PreloadsHolder>
     {
-        internal static PrideMonthMod Instance;
+        internal static All4Love Instance;
         internal static System.Random RNG = new System.Random();
         internal static List<BaseMultiSkin> items;
 
 
-        public PrideMonthMod() 
+        public All4Love() 
         {
             Instance = this;
             

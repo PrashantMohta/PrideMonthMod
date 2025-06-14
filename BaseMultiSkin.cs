@@ -39,7 +39,7 @@ namespace PrideMonthMod
 
         public Texture2D NextTexture()
         {
-           var randomValue =  PrideMonthMod.RNG.NextDouble();
+           var randomValue =  All4Love.RNG.NextDouble();
            return textures[(int)Math.Floor(randomValue * textures.Count())];
         }
         public void LoadTextures() {
